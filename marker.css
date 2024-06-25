@@ -1,0 +1,13 @@
+body{
+    vertical-align: center;
+    color: white;
+}
+.back{
+    float: right;
+    margin-right: 20px;
+    background-color: darkgreen;
+}
+
+canvas{
+    border: 3px, white solid;
+}
