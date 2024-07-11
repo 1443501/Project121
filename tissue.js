@@ -1,4 +1,6 @@
 status="";
+objects=[];
+img="";
 
 function preload(){
     img=loadImage("download (5).jpg");
@@ -7,7 +9,7 @@ function preload(){
 function setup(){
     canvas=createCanvas(500,500);
     canvas.center();
-    objectDetector=ml5.objectDetection(img, modelLoaded);
+    objectDetector=ml5.objectDetector(img, modelLoaded);
     document.getElementById("status").innerHTML="Status: Detecting Objects";
 
 }
@@ -25,4 +27,22 @@ function gotResult(error, results){
 
     }
     console.log(results)
+    objects=results;
+}
+function draw(){
+    image(img,0,0,640,420);
+    if(status !=""){
+        for(i=0; i< objects.length;i++){
+            document.getElementById("status").innerHTML="Status : Object Detected";
+            fill("red");
+            percent=floor(objects[i].confidence * 100);
+            text(objects[i].confidence * 100);
+            noFill();
+            stroke("red");
+    rect(objects[i].x, objects[i].y, objects[i].width, objects[i].height);
+        }
+    }
+}
+function back(){
+    window.location="index.html";
 }
