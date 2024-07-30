@@ -10,4 +10,5 @@ body{
 
 canvas{
     border: 3px, white solid;
+    margin: 15px;
 }

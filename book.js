@@ -2,16 +2,14 @@ status="";
 objects=[];
 
 function preload(){
-    img=loadImage("download (5).jpg");
+    img=loadImage("book.jpg");
 }
 
 
 function setup(){
     canvas=createCanvas(500,500);
     canvas.center();
-    objectDetector=ml5.objectDetector(img, modelLoaded);
-    document.getElementById("status").innerHTML="Status: Detecting Objects";
-
+    
 }
 
 function modelLoaded(){
@@ -23,13 +21,16 @@ function modelLoaded(){
 }
 function gotResult(error, results){
     if(error){
-        console.log(error)
+        console.error(error);
 
     }
     console.log(results)
     objects=results;
 }
 function draw(){
+    objectDetector=ml5.objectDetector(img, modelLoaded);
+    document.getElementById("status").innerHTML="Status: Detecting Objects";
+
     image(img,0,0,640,420);
     if(status !=""){
         for(i=0; i< objects.length;i++){
